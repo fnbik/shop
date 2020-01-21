@@ -1,0 +1,140 @@
+body
+{
+	margin: auto;
+	background-color: #1c1917;
+
+}
+.clearfix::after 
+{
+  content: "";
+  display: table;
+  clear: both;
+}
+.main-container
+{
+	width: 900px; 
+    padding: 10px;   
+    margin: auto; 
+}
+.header-container
+{	
+	transform: translateZ(0);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	content: "";
+	font-size: 14px;
+	font-weight: 500;	
+	background-image: url(../img/store.png);
+	background-image: url(../img/bg.png);
+}
+.main-container-header
+{	
+	background-color: #2e241f;
+	padding: 0 10;
+	display: flex;
+	height: 50px;
+	color: white;
+	align-items: center;
+}
+.main-container-header span
+{
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 2px;
+	font-weight: 600;
+}
+.main-container-header img
+{
+	margin-left: 10px;
+	width: 35px;
+	height: 35px;
+}
+.logo
+{
+	margin-top: 9px;
+	margin-left: 250px;
+	float: left;
+	height: 90px;
+}
+.main-container .main-container-navigation ul li a
+{ 
+	text-decoration: none;
+	color:#D9B7A6;
+	font-size: 14px;
+}
+.main-container .main-container-navigation ul li
+{
+	list-style: none;
+	float: left;
+	padding-left: 10px;
+	padding-right: 15px;
+}
+.main-container-navigation
+{
+	background-color: #3d3029;
+	display: flex;
+	height: 50px;
+	color: white;
+	align-items: center;
+	font-family: Torus, 'Helvetica Neue', Tahoma;
+}
+form
+{
+	align-items: center;
+	align-content: center;
+	border-radius: 5px;
+	background-color: #3d3029;
+	width: 880px; 
+    padding: 10px;   
+    margin: auto; 
+}
+.block-content
+{	
+	width: 800px;
+    padding: 10px; 
+    margin: auto; 
+}
+.header-block-content aside img 
+{
+	position: ;
+	width: 175px;
+	height: 175px;
+	margin-left: 5px;
+	border-radius: 25px;
+	position: relative;
+}
+.header-block-content aside
+{
+	color: yellow;
+	border-style: groove;
+	border-color: lightyellow;	
+	border-radius: 25px;
+	padding-right: 20px;
+	text-align: center;
+	padding-top: 40px;
+	margin-left: 25px;
+	padding-left: 20px;
+	margin-bottom: 50px;
+	display: inline-block;
+}
+.header-block-content aside p a
+{
+	color: white;
+	text-decoration: none;
+}
+h4
+{
+	width: 800px;
+    padding: 10px; 
+    margin: auto; 
+    align-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+}
+h4 a
+{
+	text-decoration: none;
+	color:yellow;
+}
