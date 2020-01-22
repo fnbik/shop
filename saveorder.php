@@ -19,16 +19,13 @@ include_once  "inc/config.php";
     <div class="block-content">
         <div class="header-block-content">
             <?php
-                global $basket;
 
-
-
-                $order_date = date('d.m.Y s:i:H');
+                $order_date = date('d.m.Y H:i');
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $phone = $_POST['phone'];
                 $address = $_POST['address'];
-                $order = $name . ' | ' . $email . ' | ' . $phone . ' | ' . $address . ' | ' . $basket['orderid'] . ' | ' . $order_date;
+                $order = $name . ' | ' . $email . ' | ' . $phone . ' | ' . $address . ' | ' . $_SESSION['basket_session']['orderid'] . ' | ' . $order_date;
                 $f = fopen("admin/".ORDERS_LOG, 'a');
                 fwrite($f,$order . "\r\n");
                 fclose($f);

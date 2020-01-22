@@ -20,34 +20,32 @@ function selectAllItems()
 }
 function saveBasket()
 {
-    global $basket;
-    $basket = base64_encode(serialize($basket));
-    setcookie('basket', $basket, 0x7FFFFFFF);
+    $_SESSION['basket_session'] = base64_encode(serialize($_SESSION['basket_session']));
+    setcookie('basket', $_SESSION['basket_session'], 0x7FFFFFFF);
 }
 function basketInit()
 {
-    global $basket, $count;
+    global $count;
     if(!isset($_COOKIE['basket']))
     {
-        $basket = array('orderid' => uniqid());
+        $_SESSION['basket_session'] = array('orderid' => uniqid());
         saveBasket();
     }
     else
     {
-        $basket = unserialize(base64_decode($_COOKIE['basket']));
-        $count = count($basket) - 1;
+        $_SESSION['basket_session'] = unserialize(base64_decode($_COOKIE['basket']));
+        $count = count($_SESSION['basket_session']) - 1;
     }
 }
 function add2Basket($id)
 {
-    global $basket;
-    $basket[$id] = 1;
+    $_SESSION['basket_session'][$id] = 1;
     saveBasket();
 }
 function myBasket()
 {
-    global $connection, $basket;
-    $goods = array_keys($basket);
+    global $connection;
+    $goods = array_keys($_SESSION['basket_session']);
     array_shift($goods);
     if(!$goods)
         return false;
@@ -61,24 +59,22 @@ function myBasket()
 }
 function result2Array($data)
 {
-    global $basket;
     $arr = array();
     while($row = mysqli_fetch_assoc($data))
     {
-        $row['quantity'] = $basket[$row['id']];
+        $row['quantity'] = $_SESSION['basket_session'][$row['id']];
         $arr[] = $row;
     }
     return $arr;
 }
 function deleteItemFromBasket($id)
 {
-    global $basket;
-    unset($basket[$id]);
+    unset($_SESSION['basket_session'][$id]);
     saveBasket();
 }
 function saveOrder($datetime)
 {
-    global $connection, $basket;
+    global $connection;
     $goods = myBasket();
     $sql = "INSERT INTO `shop`.`orders` ('id', 'title', 'author', 'pubyear', 'price', 'quantity', 'orderid', 'datetime')";
 }
