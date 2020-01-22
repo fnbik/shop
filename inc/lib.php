@@ -93,3 +93,32 @@ function saveOrder($datetime)
     unset($_COOKIE['basket']);
     return true;
 }
+function getOrders()
+{
+    global $connection;
+    if(!is_file("admin/".ORDERS_LOG))
+        return false;
+
+    $orders = file("admin/".ORDERS_LOG);
+    $allorders = array();
+    foreach ($orders as $order)
+    {
+        list($name, $email, $phone, $address, $orderid, $date) = explode("|", $order);
+        $orderinfo = array();
+        $orderinfo["name"] = $name;
+        $orderinfo["email"] = $email;
+        $orderinfo["phone"] = $phone;
+        $orderinfo["orderid"] = $orderid;
+        $orderinfo["date"] = $date;
+        $sql = "SELECT title, author, pubyear, price, quantity FROM `shop`.`orders` WHERE orderid = '$orderid'";
+        if(!$result = mysqli_query($connection, $sql))
+        {
+            return false;
+        }
+        $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        $orderinfo["goods"] = $items;
+        $allorders[] = $orderinfo;
+    }
+    return $allorders;
+}

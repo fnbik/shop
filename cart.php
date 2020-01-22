@@ -51,6 +51,8 @@ include_once  "inc/config.php";
             }
             echo "<h4>Sum = $sum rub</h4>";
 
+
+
             echo '<div align="center">';
             echo    '<input type="button" value="Checkout!"';
             echo           "onClick=\"location.href='orderform.php'\" />";
