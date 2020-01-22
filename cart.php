@@ -8,6 +8,7 @@ include_once  "inc/config.php";
         <title>Cart</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link rel="stylesheet" type="text/css" href="style/cart-border.css">
     </head>
 <body>
     <?php
@@ -43,7 +44,7 @@ include_once  "inc/config.php";
                     <h3>Title: <?=$item['title']?></h3>
                     <h3>Author: <?=$item['author']?></h3>
                     <p>Publication year: <?=$item['pubyear']?></p>
-                    <p>Price: <?=$item['price']?> rub</p>
+                    <p>Price: <?=$item['price']?></p>
                     <p><a href="delete_from_basket.php?id=<?=$item['id']?>">Delete</a></p>
                 </aside>
                 <?php

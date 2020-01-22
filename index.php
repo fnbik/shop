@@ -8,6 +8,7 @@ include_once  "inc/config.php";
     <meta charset="utf-8">
     <title>Catalog</title>
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/catalog-border.css";
 </head>
 <body>
         <?php

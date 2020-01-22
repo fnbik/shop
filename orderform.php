@@ -8,6 +8,7 @@ require "inc/config.php";
     <meta charset="utf-8">
     <title>Saving order data</title>
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/hover.css">
 </head>
 <body>
 <?php

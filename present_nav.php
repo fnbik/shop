@@ -10,4 +10,3 @@ echo '<ul>';
 for ($i = 0; $i < count($main_con_nav); ++$i)
     echo "<li><a href=" . $main_con_nav[$i]['href'] . ">". $main_con_nav[$i]['content']."</a></li>";
 echo '</ul>';
-?>

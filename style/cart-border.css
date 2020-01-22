@@ -1,0 +1,32 @@
+.main-container .main-container-navigation ul li:nth-child(2) a
+{
+	padding-bottom: 9px;
+	border-bottom: 5px solid #ff9966;
+	border-radius: 5px;
+}
+.main-container .main-container-navigation ul li:nth-child(3) a:hover
+{
+	padding-bottom: 9px;
+	border-bottom: 5px solid #ff9966;
+	border-radius: 5px;
+}
+.main-container .main-container-navigation ul li:nth-child(1) a:hover
+{
+	padding-bottom: 9px;
+	border-bottom: 5px solid #ff9966;
+	border-radius: 5px;
+}
+.main-container .main-container-navigation ul li:nth-child(4) a:hover
+{
+	padding-bottom: 9px;
+	border-bottom: 5px solid #ff9966;
+	border-radius: 5px;
+}
+.main-container .main-container-navigation ul li a:hover
+{
+	color:#fff;
+}
+.block-content .header-block-content aside:hover
+{
+	background-color: rgba(56, 49, 46, 0.5);
+}
