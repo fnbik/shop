@@ -76,3 +76,9 @@ function deleteItemFromBasket($id)
     unset($basket[$id]);
     saveBasket();
 }
+function saveOrder($datetime)
+{
+    global $connection, $basket;
+    $goods = myBasket();
+    $sql = "INSERT INTO `shop`.`orders` ('id', 'title', 'author', 'pubyear', 'price', 'quantity', 'orderid', 'datetime')";
+}

@@ -17,12 +17,12 @@ require "Header.php";
 
 
 <div class="main-content">
-    <form action="admin/save2cat.php" method="post">
+    <form action="saveorder.php" method="post">
         <p style="color:white;">Name: <input type="text" name="name" size="50">
         <p style="color:white;">Email: <input type="text" name="email" size="50">
         <p style="color:white;">Telephone: <input type="text" name="phone" size="4">
         <p style="color:white;">Delivery address: <input type="text" name="address" size="6">
-        <p><input type="submit" value="Add">
+        <p><input type="submit" value="To order">
     </form>
 </div>
 
