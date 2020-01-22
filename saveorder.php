@@ -18,6 +18,8 @@ include_once  "inc/config.php";
 
     <div class="block-content">
         <div class="header-block-content">
+            <p style="color:white; font-size: 24px;">Your order is accepted.</p>
+            <p style="color:white; font-size: 24px;"><a href="index.php">Return to product catalog</a></p>
             <?php
 
                 $order_date = date('d.m.Y H:i');
@@ -26,6 +28,7 @@ include_once  "inc/config.php";
                 $phone = $_POST['phone'];
                 $address = $_POST['address'];
                 $order = $name . ' | ' . $email . ' | ' . $phone . ' | ' . $address . ' | ' . $_SESSION['basket_session']['orderid'] . ' | ' . $order_date;
+                saveOrder($order_date);
                 $f = fopen("admin/".ORDERS_LOG, 'a');
                 fwrite($f,$order . "\r\n");
                 fclose($f);

@@ -76,5 +76,20 @@ function saveOrder($datetime)
 {
     global $connection;
     $goods = myBasket();
-    $sql = "INSERT INTO `shop`.`orders` ('id', 'title', 'author', 'pubyear', 'price', 'quantity', 'orderid', 'datetime')";
+    $stmt = mysqli_stmt_init($connection);
+    $sql = 'INSERT INTO `shop`.`orders` (`title`, `author`, `pubyear`, `price`, `quantity`, `orderid`, `datetime`) VALUES(?, ?, ?, ?, ?, ?, ?)';
+    if(!mysqli_stmt_prepare($stmt, $sql))
+    {
+        echo mysqli_error($connection);
+        return false;
+    }
+    foreach ($goods as $item)
+    {
+        mysqli_stmt_bind_param($stmt, "ssiiisi", $item['title'], $item['author'], $item['pubyear'], $item['price'], $item['quantity'], $_SESSION['basket_session']['orderid'], $datetime);
+        mysqli_stmt_execute($stmt);
+    }
+    mysqli_stmt_close($stmt);
+
+    unset($_COOKIE['basket']);
+    return true;
 }
