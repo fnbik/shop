@@ -8,7 +8,7 @@
     </div>
     <div class="main-container-navigation">
         <?php
-        require "present_nav.php";
+        require_once  "present_nav.php";
         ?>
     </div>
 </main>

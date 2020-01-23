@@ -2,7 +2,7 @@
 function addItemToCatalog($title, $author, $pubyear, $price, $image)
 {
     global $connection;
-	$sql = "INSERT INTO `shop`.`catalog` (`id`, `title`, `author`, `pubyear`, `price`, `image`) VALUES (NULL, '$title', '$author', '$pubyear', '$price', '$image');";
+	$sql = "INSERT INTO catalog (`id`, `title`, `author`, `pubyear`, `price`, `image`) VALUES (NULL, '$title', '$author', '$pubyear', '$price', '$image');";
 	mysqli_query($connection, $sql);
 	mysqli_close($connection);
     return true;
@@ -10,7 +10,7 @@ function addItemToCatalog($title, $author, $pubyear, $price, $image)
 function selectAllItems()
 {
     global $connection;
-    $sql = "SELECT * FROM `shop`.`catalog`";
+    $sql = "SELECT * FROM catalog";
     if(!$result = mysqli_query($connection, $sql))
         return true;
     $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -21,11 +21,10 @@ function selectAllItems()
 function saveBasket()
 {
     $_SESSION['basket_session'] = base64_encode(serialize($_SESSION['basket_session']));
-    setcookie('basket', $_SESSION['basket_session'], 0x7FFFFFFF);
+    setcookie('basket', $_SESSION['basket_session'], time() + 3600);
 }
 function basketInit()
 {
-    global $count;
     if(!isset($_COOKIE['basket']))
     {
         $_SESSION['basket_session'] = array('orderid' => uniqid());
@@ -34,7 +33,6 @@ function basketInit()
     else
     {
         $_SESSION['basket_session'] = unserialize(base64_decode($_COOKIE['basket']));
-        $count = count($_SESSION['basket_session']) - 1;
     }
 }
 function add2Basket($id)
@@ -50,7 +48,7 @@ function myBasket()
     if(!$goods)
         return false;
     $ids = implode(",", $goods);
-    $sql = "SELECT * FROM `shop`.`catalog` WHERE id IN($ids)";
+    $sql = "SELECT * FROM catalog WHERE id IN($ids)";
     if(!$result = mysqli_query($connection, $sql))
         return false;
     $items = result2Array($result);
@@ -77,7 +75,7 @@ function saveOrder($datetime)
     global $connection;
     $goods = myBasket();
     $stmt = mysqli_stmt_init($connection);
-    $sql = 'INSERT INTO `shop`.`orders` (`title`, `author`, `pubyear`, `price`, `quantity`, `orderid`, `datetime`) VALUES(?, ?, ?, ?, ?, ?, ?)';
+    $sql = 'INSERT INTO orders (`title`, `author`, `pubyear`, `price`, `quantity`, `orderid`, `datetime`) VALUES(?, ?, ?, ?, ?, ?, ?)';
     if(!mysqli_stmt_prepare($stmt, $sql))
     {
         echo mysqli_error($connection);
@@ -90,7 +88,10 @@ function saveOrder($datetime)
     }
     mysqli_stmt_close($stmt);
 
-    unset($_COOKIE['basket']);
+
+
+    if(!isset($_COOKIE['basket']))
+        setcookie('basket', $_SESSION['basket_session'], time() - 3600);
     return true;
 }
 function getOrders()
@@ -110,7 +111,7 @@ function getOrders()
         $orderinfo["phone"] = $phone;
         $orderinfo["orderid"] = $orderid;
         $orderinfo["date"] = $date;
-        $sql = "SELECT title, author, pubyear, price, quantity FROM `shop`.`orders` WHERE orderid = '$orderid'";
+        $sql = "SELECT title, author, pubyear, price, quantity FROM orders WHERE orderid = '$orderid'";
         if(!$result = mysqli_query($connection, $sql))
         {
             return false;

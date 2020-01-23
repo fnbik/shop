@@ -16,8 +16,7 @@ include_once  "inc/config.php";
     ?>
 
     <?php
-    global $count;
-    if($count < 1)
+    if((count($_SESSION['basket_session']) - 1) < 1)
         echo "<h4>Cart is empty! <a href='index.php'>Return to the catalog.</a></h4>";
     else
     {
@@ -30,9 +29,9 @@ include_once  "inc/config.php";
     ?>
     <div class="block-content">
         <div class="header-block-content">
-            <p style="color:white;">Items in <a style="text-decoration: none; color:yellow;" href="cart.php">basket</a>: <?= $count?></p>
+            <p style="color:white;">Items in <a style="text-decoration: none; color:yellow;" href="cart.php">basket</a>: <?= count($_SESSION['basket_session']) - 1?></p>
             <?php
-            if($count > 0):
+            if((count($_SESSION['basket_session']) - 1) > 0):
             $goods = selectAllItems();
             foreach ($items as $item)
             {
@@ -53,12 +52,17 @@ include_once  "inc/config.php";
 
 
 
-            echo '<div align="center">';
-            echo    '<input type="button" value="Checkout!"';
-            echo           "onClick=\"location.href='orderform.php'\" />";
-            endif;
+
+
             ?>
+            <div align="center">
+                <input type="button" value="Checkout!" onclick="location.href='orderform.php'">
             </div>
+            <?
+            endif;
+
+            ?>
+
         </div>
     </div>
 

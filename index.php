@@ -15,12 +15,20 @@ include_once  "inc/config.php";
         require "Header.php";
         ?>
 
-
+        <?
+        require_once  "admin/secure/secure.inc.php";
+        if(isset($_GET['logout']))
+        {
+            logOut();
+        }
+        ?>
 
     <div class="block-content">
         <div class="header-block-content">
-            <p style="color:white;">Items in <a style="text-decoration: none; color:yellow;" href="cart.php">basket</a>: <?= $count?></p>
+            <p style="color:white;">Items in <a style="text-decoration: none; color:yellow;" href="cart.php">basket</a>: <?= count($_SESSION['basket_session']) - 1?></p>
             <?php
+
+
                 $goods = selectAllItems();
                 foreach ($goods as $item)
                 {

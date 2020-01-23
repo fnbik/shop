@@ -22,6 +22,18 @@
 	border-bottom: 5px solid #ff9966;
 	border-radius: 5px;
 }
+.main-container .main-container-navigation ul li:nth-child(5) a:hover
+{
+	padding-bottom: 9px;
+	border-bottom: 5px solid #ff9966;
+	border-radius: 5px;
+}
+.main-container .main-container-navigation ul li:nth-child(6) a:hover
+{
+	padding-bottom: 9px;
+	border-bottom: 5px solid #ff9966;
+	border-radius: 5px;
+}
 .main-container .main-container-navigation ul li a:hover
 {
 	color:#fff;

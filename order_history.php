@@ -35,13 +35,20 @@ require "Header.php";
                 {
                     foreach ($orders as $order)
                     {
-                        echo '<tr style="text-align: center;">';
-                        echo '<td style="color: navajowhite;">'.$order["name"].'</td>';
-                        echo '<td style="color: navajowhite;">'.$order["email"].'</td>';
-                        echo '<td style="color: navajowhite;">'.$order["phone"].'</td>';
-                        echo '<td style="color: navajowhite;">'.$order["orderid"].'</td>';
-                        echo '<td style="color: navajowhite;">'.$order["date"].'</td>';
-                        echo '</tr>';
+                        ?>
+                        <tr style="text-align: center;">
+                        <?
+                        foreach ($order as $key => $value)
+                        {
+                            if($key != "goods"):
+                            ?>
+                                <td style="color: navajowhite;"><?=$value?></td>
+                            <?
+                            endif;
+                        }
+                        ?>
+                        </tr>
+                        <?
                     }
 
                 }
